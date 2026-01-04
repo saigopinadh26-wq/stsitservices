@@ -5,8 +5,426 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>STS IT Services | Genuine IT Consultancy & Career Support</title>
   <meta name="description" content="STS IT Services - Professional IT consultancy, project support, interview assistance and online training for career growth." />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- NEW: Clean Light Theme + Different Layout (drop-in index.html) -->
+  <style>
+    :root{
+      --brand:#0ea5e9;      /* sky */
+      --brand2:#6366f1;     /* indigo */
+      --accent:#10b981;     /* emerald */
+      --danger:#ef4444;
+
+      --bg:#f6f7fb;
+      --panel:#ffffff;
+      --text:#0f172a;       /* slate-900 */
+      --muted:#475569;      /* slate-600 */
+      --border:#e6e8f0;
+      --shadow: 0 18px 55px rgba(15,23,42,0.10);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 450px at 10% 0%, rgba(14,165,233,0.16), transparent 55%),
+        radial-gradient(900px 450px at 95% 0%, rgba(99,102,241,0.14), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 38%, #ffffff 100%);
+      min-height:100vh;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .container{
+      width:min(1120px, calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navwrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 260px;
+    }
+    .brand img{
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+      object-fit: cover;
+    }
+    .btitle{
+      font-weight: 900;
+      letter-spacing:.2px;
+      font-size: 16px;
+      line-height:1.1;
+    }
+    .btag{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 13px;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease, color .15s ease;
+    }
+    nav a:hover{
+      background: rgba(14,165,233,0.08);
+      border-color: rgba(14,165,233,0.22);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+    nav a.active{
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 25px rgba(14,165,233,0.20);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      cursor:pointer;
+      font-weight: 900;
+      font-size: 14px;
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, background .15s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn:active{ transform: translateY(0px); }
+
+    .btn.primary{
+      color:#fff;
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 14px 35px rgba(99,102,241,0.18);
+    }
+    .btn.soft{
+      background: rgba(14,165,233,0.10);
+      border-color: rgba(14,165,233,0.22);
+      color: var(--text);
+    }
+    .btn.ghost{
+      background: #fff;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    /* Cards */
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Main */
+    main.container{ padding: 26px 0 70px; }
+    section[id]{ scroll-margin-top: 92px; }
+
+    h1,h2,h3{ margin:0; }
+    .lead{
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+      margin: 12px 0 0;
+    }
+    h2{
+      font-size: 22px;
+      letter-spacing:.2px;
+      margin: 0 0 12px;
+    }
+
+    /* NEW HERO LAYOUT (split + floating trust bar) */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+      align-items: start;
+      margin-top: 10px;
+    }
+
+    .heroMain{
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(600px 260px at 20% 10%, rgba(14,165,233,0.25), transparent 60%),
+        radial-gradient(600px 260px at 70% 0%, rgba(99,102,241,0.22), transparent 60%);
+      pointer-events:none;
+    }
+    .heroMain > *{ position: relative; }
+
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(14,165,233,0.22);
+      background: rgba(14,165,233,0.08);
+      font-weight: 900;
+      font-size: 12px;
+      color: #0b3a55;
+    }
+    .pill.ok{
+      border-color: rgba(16,185,129,0.28);
+      background: rgba(16,185,129,0.10);
+      color: #064e3b;
+    }
+
+    .headline{
+      font-size: clamp(28px, 4.2vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.4px;
+      margin-top: 4px;
+    }
+    .grad{
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* Right Column: Quick contact + trust */
+    .quick{
+      padding: 18px;
+    }
+    .quick h3{
+      font-size: 14px;
+      font-weight: 1000;
+      letter-spacing:.2px;
+      margin-bottom: 10px;
+    }
+    .quick .item{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 0;
+      border-top: 1px dashed var(--border);
+    }
+    .quick .item:first-of-type{ border-top: none; padding-top: 0; }
+    .muted{ color: var(--muted); }
+
+    .copyRow{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .copyBtn{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 900;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .copyBtn:hover{ transform: translateY(-1px); background: rgba(14,165,233,0.06); }
+    .copyNote{
+      font-size: 12px;
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    /* Core Services - NEW design (icon cards) */
+    .servicesWrap{
+      margin-top: 22px;
+    }
+    .servicesGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .svc{
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .svc:before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle at 30% 30%, rgba(14,165,233,0.22), transparent 70%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+    .svc .icon{
+      width: 44px;
+      height: 44px;
+      display:grid;
+      place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(14,165,233,0.22);
+      background: rgba(14,165,233,0.08);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .svc h3{
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing:.2px;
+      margin-bottom: 6px;
+    }
+    .svc p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Contact section - cleaner */
+    .split{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .formWrap{ padding: 18px; }
+    form label{
+      display:block;
+      font-size: 12px;
+      font-weight: 1000;
+      color: #0f172a;
+      margin: 12px 0 6px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      outline:none;
+      background:#fff;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(14,165,233,0.55);
+      box-shadow: 0 0 0 4px rgba(14,165,233,0.14);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+
+    .status{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .small{
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 24px;
+      padding: 18px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #fff;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+
+    /* WhatsApp Floating */
+    .whatsapp-float{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      color:#053b2a;
+      font-weight: 1000;
+      border: 1px solid rgba(16,185,129,0.30);
+      background: linear-gradient(90deg, rgba(16,185,129,0.95), rgba(34,197,94,0.92));
+      box-shadow: 0 18px 45px rgba(15,23,42,0.18);
+      z-index: 60;
+    }
+
+    /* Mobile */
+    @media (max-width: 920px){
+      .navwrap{ flex-direction: column; align-items: flex-start; }
+      nav{ justify-content:flex-start; }
+      .hero{ grid-template-columns: 1fr; }
+      .servicesGrid{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
 
   <header class="topbar">
@@ -30,71 +448,101 @@
   </header>
 
   <main class="container">
+
+    <!-- NEW HERO -->
     <section class="hero">
-      <div class="heroGrid">
-        <div class="card heroLeft">
-          <div class="kicker">✅ Professional • ✅ Practical • ✅ Transparent</div>
-          <h1>IT Support & Training that feels <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;">genuine</span>.</h1>
-          <p class="sub">
-            We help students and professionals with real-time project support, interview prep,
-            and job-ready training — focused on practical skills, clear guidance, and long-term career growth.
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn primary" href="training.html">Explore Training</a>
-            <a class="btn secondary" href="projects.html">Project Support</a>
-            <a class="btn secondary" href="#contact">Get Free Consultation</a>
-          </div>
-
-          <div class="badges">
-            <div class="badge">⚡ Fast Response</div>
-            <div class="badge">🧩 Real-Time Support</div>
-            <div class="badge">📌 Practical Roadmaps</div>
-            <div class="badge">🤝 Honest Guidance</div>
-          </div>
+      <div class="card heroMain">
+        <div class="pillRow">
+          <div class="pill">✅ Professional</div>
+          <div class="pill ok">✅ Transparent</div>
+          <div class="pill">✅ Practical</div>
         </div>
 
-        <div class="card heroRight">
-          <div class="miniCard">
-            <h3>What we do</h3>
-            <p>Interview assistance, online training, real-time project support, and career guidance.</p>
-          </div>
-          <div class="miniCard">
-            <h3>Who is it for?</h3>
-            <p>Freshers, OPT/CPT students, and working professionals who want strong IT growth.</p>
-          </div>
-          <div class="miniCard">
-            <h3>Why trust us?</h3>
-            <p>Clear process, practical learning, and transparent support — no fake promises.</p>
-          </div>
+        <h1 class="headline">
+          Genuine IT Consultancy & Career Support that feels <span class="grad">modern</span>.
+        </h1>
+
+        <p class="lead">
+          We help students and professionals with real-time project support, interview prep,
+          and job-ready training — focused on practical skills, clear guidance, and long-term career growth.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="training.html">Explore Training</a>
+          <a class="btn soft" href="projects.html">Project Support</a>
+          <a class="btn ghost" href="#contact">Get Free Consultation</a>
         </div>
+
+        <p class="small" style="margin-top:14px;">
+          📌 Quick tip: Clients can reach you instantly using the WhatsApp floating button (bottom-right).
+        </p>
       </div>
+
+      <aside class="card quick">
+        <h3>Quick Reach (1-click)</h3>
+
+        <div class="item">
+          <div style="font-size:18px;">💬</div>
+          <div>
+            <div style="font-weight:1000;">WhatsApp</div>
+            <div class="muted" id="waText">+91 8317567205</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div style="font-size:18px;">📧</div>
+          <div>
+            <div style="font-weight:1000;">Email</div>
+            <div class="muted" id="mailText">stackytechstuff@gmail.com</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div style="font-size:18px;">🌐</div>
+          <div>
+            <div style="font-weight:1000;">Website</div>
+            <div class="muted">stsitservices.com</div>
+          </div>
+        </div>
+
+        <div class="copyRow">
+          <button class="copyBtn" id="copyWa">Copy WhatsApp</button>
+          <button class="copyBtn" id="copyMail">Copy Email</button>
+        </div>
+
+        <div class="copyNote" id="copyNote">Tip: Copy & paste easily to share with clients.</div>
+      </aside>
     </section>
 
-    <section class="section">
+    <!-- SERVICES -->
+    <section class="servicesWrap">
       <h2>Core Services</h2>
-      <div class="grid3">
-        <div class="card feature">
-          <div class="tag">Project Support</div>
-          <h3>Real-time help</h3>
-          <p>Guidance for tasks, bugs, dashboards, SQL queries, code reviews, and delivery support.</p>
+      <div class="servicesGrid">
+        <div class="card svc">
+          <div class="icon">🧩</div>
+          <h3>Project Support</h3>
+          <p>Real-time help for tasks, bugs, dashboards, SQL queries, code reviews, and delivery support.</p>
         </div>
-        <div class="card feature">
-          <div class="tag">Interview Assistance</div>
-          <h3>Confidence building</h3>
-          <p>Mock interviews, resume review, STAR answers, and role-based question practice.</p>
+
+        <div class="card svc">
+          <div class="icon">🎯</div>
+          <h3>Interview Assistance</h3>
+          <p>Mock interviews, resume review, STAR answers, and role-based question practice to build confidence.</p>
         </div>
-        <div class="card feature">
-          <div class="tag">Online Training</div>
-          <h3>Job-ready learning</h3>
-          <p>Structured modules + practice projects to build portfolio and real-world skills.</p>
+
+        <div class="card svc">
+          <div class="icon">🚀</div>
+          <h3>Online Training</h3>
+          <p>Structured modules + practice projects to build portfolio and real-world, job-ready skills.</p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <!-- CONTACT (same fields, new styling) -->
+    <section id="contact" class="section" style="margin-top:22px;">
       <h2>Contact Us</h2>
       <div class="split">
+
         <div class="card formWrap">
           <form id="contactForm">
             <label>Full Name</label>
@@ -122,33 +570,39 @@
             <div id="formStatus" class="status"></div>
 
             <div class="small">
-              Note: This form sends directly to your Gmail using Google Apps Script (free).  
+              Note: This form sends directly to your Gmail using Google Apps Script (free).
               If urgent, use WhatsApp button below.
             </div>
           </form>
         </div>
 
         <div class="card formWrap">
-          <h3 style="margin:0 0 10px;">Business Contact</h3>
-          <p class="sub" style="margin:0">
-            📧 Email: <b></b>stackytechstuff@gmail.com<br><br>
-            📞 WhatsApp: <b></b>+91 8317567205<br><br>
+          <h3 style="margin:0 0 10px; font-weight:1000;">Business Contact</h3>
+          <p class="lead" style="margin:0; font-size:14px;">
+            📧 Email: <b>stackytechstuff@gmail.com</b><br><br>
+            📞 WhatsApp: <b>+91 8317567205</b><br><br>
             🌐 Website: <b>stsitservices.com</b><br><br>
             🕒 Hours: <b>Mon–Sat</b>
           </p>
-          <div class="badges">
-            <div class="badge">🔒 Secure & Private</div>
-            <div class="badge">✅ Genuine Support</div>
-            <div class="badge">📈 Growth Focused</div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <a class="btn soft" href="#contact">Free Consultation</a>
+            <a class="btn ghost" id="emailLink" href="#">Email Now</a>
+          </div>
+
+          <div class="small" style="margin-top:14px;">
+            🔒 Secure & Private • ✅ Genuine Support • 📈 Growth Focused
           </div>
         </div>
+
       </div>
     </section>
 
     <footer class="footer">
       <div>© 2026 <b>STS IT Services</b>. All rights reserved.</div>
-      <div class="small">• Professional customer-first approach</div>
+      <div class="small" style="margin:0;">• Professional customer-first approach</div>
     </footer>
+
   </main>
 
   <!-- WhatsApp Floating -->
@@ -156,6 +610,82 @@
     💬 <span>Chat on WhatsApp</span>
   </a>
 
-  <script src="script.js"></script>
+  <script>
+    // ===== Editable contact settings =====
+    const CONTACT = {
+      email: "stackytechstuff@gmail.com",
+      waNumber: "918317567205", // country code + number, no + no spaces
+      waDisplay: "+91 8317567205",
+      waMessage: "Hi STS IT Services, I want help with Training / Project Support / Interview Assistance."
+    };
+
+    // WhatsApp link
+    const waBtn = document.getElementById("waBtn");
+    const waLink = "https://wa.me/" + CONTACT.waNumber + "?text=" + encodeURIComponent(CONTACT.waMessage);
+    waBtn.href = waLink;
+
+    // Quick reach texts
+    document.getElementById("waText").textContent = CONTACT.waDisplay;
+    document.getElementById("mailText").textContent = CONTACT.email;
+
+    // Email link
+    const emailLink = document.getElementById("emailLink");
+    emailLink.href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("STS IT Services - Consultation") +
+      "&body=" + encodeURIComponent("Hi STS IT Services,%0D%0A%0D%0AI want help with:%0D%0A- Training / Project Support / Interview Assistance%0D%0A%0D%0AThank you.");
+
+    // Copy buttons (client friendly)
+    const copyNote = document.getElementById("copyNote");
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        copyNote.textContent = "✅ Copied: " + text;
+      }catch(e){
+        copyNote.textContent = "❌ Copy failed. Please select and copy manually.";
+      }
+    }
+    document.getElementById("copyWa").addEventListener("click", ()=>copyText(CONTACT.waDisplay));
+    document.getElementById("copyMail").addEventListener("click", ()=>copyText(CONTACT.email));
+
+    // ===== Contact form (kept same behavior) =====
+    // Add your Apps Script URL if you already have it:
+    const APPS_SCRIPT_URL = ""; // e.g., "https://script.google.com/macros/s/XXXX/exec"
+
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    function setStatus(msg, ok=true){
+      statusEl.textContent = msg;
+      statusEl.style.color = ok ? "#065f46" : "#991b1b";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if(!APPS_SCRIPT_URL){
+        setStatus("Form is ready. Add your Google Apps Script URL in the code to receive messages in Gmail.", false);
+        return;
+      }
+
+      setStatus("Sending...", true);
+
+      const formData = new FormData(form);
+      const payload = {};
+      formData.forEach((v,k)=> payload[k]=v);
+
+      try{
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        form.reset();
+        setStatus("✅ Message sent! We will contact you soon.", true);
+      }catch(err){
+        setStatus("❌ Failed to send. Please use WhatsApp button or email us directly.", false);
+      }
+    });
+  </script>
 </body>
 </html>
