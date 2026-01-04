@@ -1,220 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>STS IT Services | IT Consultancy & Career Support</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="STS IT Services - IT Consultancy, Project Support, Interview Assistance, Online Training and Career Guidance">
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #333;
-    }
-
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, #061a2d, #0b3c5d);
-      color: white;
-      padding: 20px 10px;
-      text-align: center;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .logo-container img {
-      height: 70px;
-      max-width: 100%;
-    }
-
-    .logo-text h1 {
-      margin: 0;
-      font-size: 30px;
-    }
-
-    .logo-text p {
-      margin: 4px 0 0;
-      font-size: 14px;
-      color: #d6e6f2;
-    }
-
-    /* NAV */
-    nav {
-      background: #06283d;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
-
-    .hero h2 {
-      font-size: 28px;
-      color: #0b3c5d;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.6;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2 {
-      color: #0b3c5d;
-      margin-bottom: 20px;
-    }
-
-    /* SERVICES */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #06283d;
-    }
-
-    /* CONTACT */
-    .contact p {
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #06283d;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>STS IT Services | Genuine IT Consultancy & Career Support</title>
+  <meta name="description" content="STS IT Services - Professional IT consultancy, project support, interview assistance and online training for career growth." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- HEADER WITH LOGO -->
-  <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="STS IT Services Logo">
-      <div class="logo-text">
-        <h1>STS IT Services</h1>
-        <p>Your Bridge to a Successful IT Career</p>
-      </div>
+  <header class="topbar">
+    <div class="container navwrap">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="STS IT Services Logo">
+        <div>
+          <div class="btitle">STS IT Services</div>
+          <div class="btag">Your Bridge to a Successful IT Career</div>
+        </div>
+      </a>
+
+      <nav>
+        <a class="active" href="index.html">Home</a>
+        <a href="training.html">Training</a>
+        <a href="projects.html">Projects</a>
+        <a href="careers.html">Careers</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <main class="container">
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="card heroLeft">
+          <div class="kicker">✅ Professional • ✅ Practical • ✅ Transparent</div>
+          <h1>IT Support & Training that feels <span style="background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;">genuine</span>.</h1>
+          <p class="sub">
+            We help students and professionals with real-time project support, interview prep,
+            and job-ready training — focused on practical skills, clear guidance, and long-term career growth.
+          </p>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h2>Build Your IT Career With Confidence</h2>
-    <p>
-      STS IT Services helps students and professionals with IT consultancy,
-      real-time project support, interview assistance, and online training
-      to succeed in today’s competitive IT industry.
-    </p>
-  </section>
+          <div class="ctaRow">
+            <a class="btn primary" href="training.html">Explore Training</a>
+            <a class="btn secondary" href="projects.html">Project Support</a>
+            <a class="btn secondary" href="#contact">Get Free Consultation</a>
+          </div>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>
-      STS IT Services is a professional IT consultancy focused on practical learning,
-      real-time industry exposure, and honest career guidance. We specialize in
-      helping freshers, OPT students, and working professionals grow confidently
-      in their IT careers.
-    </p>
-  </section>
+          <div class="badges">
+            <div class="badge">⚡ Fast Response</div>
+            <div class="badge">🧩 Real-Time Support</div>
+            <div class="badge">📌 Practical Roadmaps</div>
+            <div class="badge">🤝 Honest Guidance</div>
+          </div>
+        </div>
 
-  <!-- SERVICES -->
-  <section id="services" class="section">
-    <h2>Our Services</h2>
-
-    <div class="services">
-      <div class="card">
-        <h3>Project Support</h3>
-        <p>Real-time assistance for Java, SQL, Python, Power BI, and IT projects.</p>
+        <div class="card heroRight">
+          <div class="miniCard">
+            <h3>What we do</h3>
+            <p>Interview assistance, online training, real-time project support, and career guidance.</p>
+          </div>
+          <div class="miniCard">
+            <h3>Who is it for?</h3>
+            <p>Freshers, OPT/CPT students, and working professionals who want strong IT growth.</p>
+          </div>
+          <div class="miniCard">
+            <h3>Why trust us?</h3>
+            <p>Clear process, practical learning, and transparent support — no fake promises.</p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Interview Assistance</h3>
-        <p>Mock interviews, resume guidance, and real interview preparation.</p>
+    <section class="section">
+      <h2>Core Services</h2>
+      <div class="grid3">
+        <div class="card feature">
+          <div class="tag">Project Support</div>
+          <h3>Real-time help</h3>
+          <p>Guidance for tasks, bugs, dashboards, SQL queries, code reviews, and delivery support.</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">Interview Assistance</div>
+          <h3>Confidence building</h3>
+          <p>Mock interviews, resume review, STAR answers, and role-based question practice.</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">Online Training</div>
+          <h3>Job-ready learning</h3>
+          <p>Structured modules + practice projects to build portfolio and real-world skills.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Online Training</h3>
-        <p>Beginner to advanced IT training with hands-on practical sessions.</p>
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <div class="split">
+        <div class="card formWrap">
+          <form id="contactForm">
+            <label>Full Name</label>
+            <input name="name" required placeholder="Your name" />
+
+            <label>Email</label>
+            <input name="email" type="email" required placeholder="yourmail@gmail.com" />
+
+            <label>Phone / WhatsApp</label>
+            <input name="phone" placeholder="+1 XXX XXX XXXX" />
+
+            <label>Service Needed</label>
+            <select name="service" required>
+              <option value="Training">Training</option>
+              <option value="Project Support">Project Support</option>
+              <option value="Interview Assistance">Interview Assistance</option>
+              <option value="Career Guidance">Career Guidance</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label>Message</label>
+            <textarea name="message" required placeholder="Tell us what you need..."></textarea>
+
+            <button class="btn primary" type="submit">Send Message</button>
+            <div id="formStatus" class="status"></div>
+
+            <div class="small">
+              Note: This form sends directly to your Gmail using Google Apps Script (free).  
+              If urgent, use WhatsApp button below.
+            </div>
+          </form>
+        </div>
+
+        <div class="card formWrap">
+          <h3 style="margin:0 0 10px;">Business Contact</h3>
+          <p class="sub" style="margin:0">
+            📧 Email: <b>support@stsitservices.com</b><br><br>
+            📞 WhatsApp: <b>Update in code</b><br><br>
+            🌐 Website: <b>stsitservices.com</b><br><br>
+            🕒 Hours: <b>Mon–Sat, 10 AM – 8 PM</b>
+          </p>
+          <div class="badges">
+            <div class="badge">🔒 Secure & Private</div>
+            <div class="badge">✅ Genuine Support</div>
+            <div class="badge">📈 Growth Focused</div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Career Guidance</h3>
-        <p>OPT / CPT guidance, job role selection, and long-term career planning.</p>
-      </div>
-    </div>
-  </section>
+    <footer class="footer">
+      <div>© 2026 <b>STS IT Services</b>. All rights reserved.</div>
+      <div class="small">Built on GitHub Pages • Secure HTTPS • Professional customer-first approach</div>
+    </footer>
+  </main>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section contact">
-    <h2>Contact Us</h2>
-    <p>
-      📧 Email: <b>support@stsitservices.com</b><br>
-      📞 Phone / WhatsApp: <b>+1-XXX-XXX-XXXX</b><br>
-      🌐 Website: <b>www.stsitservices.com</b>
-    </p>
-  </section>
+  <!-- WhatsApp Floating -->
+  <a id="waBtn" class="whatsapp-float" href="#" target="_blank" rel="noopener">
+    💬 <span>Chat on WhatsApp</span>
+  </a>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 STS IT Services. All Rights Reserved.</p>
-    <p>Designed & Managed by STS IT Services</p>
-  </footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
