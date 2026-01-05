@@ -795,28 +795,27 @@
         </div>
       </div>
     </section>
-<!-- Right: Business Contact -->
-        <div class="card formWrap">
-          <h3 style="margin:0 0 10px; font-weight:1100;">Business Contact</h3>
-          <p class="muted" style="margin:0; line-height:1.7;">
-            📧 Email: <b style="color:var(--text)">stackytechstuff@gmail.com</b><br><br>
-            📞 WhatsApp: <b style="color:var(--text)">+19787357328 +918317567205</b><br><br>
-            🌐 Website: <b style="color:var(--text)">stsitservices.com</b><br><br>
-            🕒 Hours: <b style="color:var(--text)">Mon–Sat</b>
-          </p>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-            <a class="btn secondary" id="emailNow" href="#">Email Now</a>
-            <a class="btn purple" id="waNow" href="#" target="_blank" rel="noopener">WhatsApp Now</a>
-          </div>
+    <!-- Right: Business Contact -->
+    <!-- ✅ FIX 1: Added id="contact" so top Contact button scrolls here -->
+    <div class="card formWrap" id="contact">
+      <h3 style="margin:0 0 10px; font-weight:1100;">Business Contact</h3>
+      <p class="muted" style="margin:0; line-height:1.7;">
+        📧 Email: <b style="color:var(--text)">stackytechstuff@gmail.com</b><br><br>
+        📞 WhatsApp: <b style="color:var(--text)">+19787357328 +918317567205</b><br><br>
+        🌐 Website: <b style="color:var(--text)">stsitservices.com</b><br><br>
+        🕒 Hours: <b style="color:var(--text)">Mon–Sat</b>
+      </p>
 
-          <div class="small" style="margin-top:14px;">
-            🔒 Secure & Private • ✅ Genuine Support • 📈 Growth Focused
-          </div>
-        </div>
-
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn secondary" id="emailNow" href="#">Email Now</a>
+        <a class="btn purple" id="waNow" href="#" target="_blank" rel="noopener">WhatsApp Now</a>
       </div>
-    </section>
+
+      <div class="small" style="margin-top:14px;">
+        🔒 Secure & Private • ✅ Genuine Support • 📈 Growth Focused
+      </div>
+    </div>
 
     <footer class="footer">
       <div>© 2026 <b>STS IT Services</b>. All rights reserved.</div>
@@ -834,12 +833,13 @@
 
   <script>
     // ===== Editable contact settings =====
-    // Your WhatsApp number + your message set here
+    // ✅ FIX 2: added waMessage so WhatsApp doesn't show "undefined"
     const CONTACT = {
       email: "stackytechstuff@gmail.com",
-      waNumber: "+918317567205",// +918317567205 (no "+" no spaces)
+      waNumber: "+918317567205", // keep as you have
       waDisplay: "+918317567205",
-     };
+      waMessage: "Hi, I want to chat."
+    };
 
     // WhatsApp links
     const waLink = "https://wa.me/" + CONTACT.waNumber + "?text=" + encodeURIComponent(CONTACT.waMessage);
@@ -865,38 +865,41 @@
     const statusEl = document.getElementById("formStatus");
 
     function setStatus(msg, ok=true){
+      if(!statusEl) return;
       statusEl.textContent = msg;
       statusEl.style.color = ok ? "rgba(34,197,94,0.95)" : "rgba(248,113,113,0.95)";
     }
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    if(form){
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      if(!APPS_SCRIPT_URL){
-        setStatus("Form is ready. Add your Google Apps Script URL in the code to receive messages in Gmail.", false);
-        return;
-      }
+        if(!APPS_SCRIPT_URL){
+          setStatus("Form is ready. Add your Google Apps Script URL in the code to receive messages in Gmail.", false);
+          return;
+        }
 
-      setStatus("Sending...", true);
+        setStatus("Sending...", true);
 
-      const formData = new FormData(form);
-      const payload = {};
-      formData.forEach((v,k)=> payload[k]=v);
+        const formData = new FormData(form);
+        const payload = {};
+        formData.forEach((v,k)=> payload[k]=v);
 
-      try{
-        await fetch(APPS_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+        try{
+          await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
 
-        form.reset();
-        setStatus("✅ Message sent! We will contact you soon.", true);
-      }catch(err){
-        setStatus("❌ Failed to send. Please use WhatsApp button or email us directly.", false);
-      }
-    });
+          form.reset();
+          setStatus("✅ Message sent! We will contact you soon.", true);
+        }catch(err){
+          setStatus("❌ Failed to send. Please use WhatsApp button or email us directly.", false);
+        }
+      });
+    }
 
     // ===== Simple count-up animation for stats =====
     const counters = document.querySelectorAll("[data-count]");
@@ -931,3 +934,4 @@
   </script>
 </body>
 </html>
+
